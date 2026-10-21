@@ -1,4 +1,4 @@
-const API_BASE = 'http://127.0.0.1:8000/api/walkins';
+const API_BASE = 'https://walkn-seek-api.onrender.com/api/walkins';
 let pendingDeleteId = null;
 
 document.addEventListener('DOMContentLoaded', () => {
