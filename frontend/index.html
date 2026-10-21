@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walk'n Seek - Live Job Walk-Ins & Openings</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo"><i class="fa-solid fa-person-walking-luggage"></i> Walk'n <span>Seek</span></div>
+        <button class="btn-primary" id="openModalBtn"><i class="fa-solid fa-plus"></i> Post a Walk-In</button>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <h1>Find Everyday Walk-Ins & Job Openings Near You</h1>
+            <p>Real-time community-driven job drives, locations, eligibility, and direct venue details.</p>
+            
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="searchInput" placeholder="Search by Company, Skill (e.g. Python, React), or Role...">
+            </div>
+        </section>
+
+        <section class="filter-bar">
+            <div class="filter-group">
+                <label><i class="fa-solid fa-location-dot"></i> Location</label>
+                <select id="filterLocation">
+                    <option value="All">All Locations</option>
+                    <option value="Hyderabad">Hyderabad</option>
+                    <option value="Bengaluru">Bengaluru</option>
+                    <option value="Pune">Pune</option>
+                    <option value="Chennai">Chennai</option>
+                    <option value="Remote">Remote</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label><i class="fa-solid fa-briefcase"></i> Job Role</label>
+                <select id="filterRole">
+                    <option value="All">All Roles</option>
+                    <option value="Software Engineer">Software Engineer</option>
+                    <option value="Frontend Developer">Frontend Developer</option>
+                    <option value="Data Analyst">Data Analyst</option>
+                    <option value="QA / Tester">QA / Tester</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label><i class="fa-solid fa-graduation-cap"></i> Qualification</label>
+                <select id="filterEligibility">
+                    <option value="All">All Degrees</option>
+                    <option value="B.Tech / B.E">B.Tech / B.E</option>
+                    <option value="BSc / BCA">BSc / BCA</option>
+                    <option value="Any Graduate">Any Graduate</option>
+                </select>
+            </div>
+        </section>
+
+        <section class="listings-section">
+            <div class="section-header">
+                <h2>Active Walk-Ins (<span id="totalCount">0</span>)</h2>
+            </div>
+            <div id="walkinsGrid" class="cards-grid">
+                <!-- Cards render dynamically -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal for Posting Walk-Ins -->
+    <div class="modal" id="postModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fa-solid fa-bullhorn"></i> Post a Walk-In Opening</h3>
+                <span class="close-btn" id="closeModalBtn">&times;</span>
+            </div>
+            <form id="walkinForm">
+                 <input type="hidden" id="editId" value="">
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Company Name *</label>
+                        <input type="text" id="company" required placeholder="e.g. TCS, Infosys, TechCorp">
+                    </div>
+                    <div class="form-group">
+                        <label>Job Role *</label>
+                        <input type="text" id="role" required placeholder="e.g. Associate Software Engineer">
+                    </div>
+                    <div class="form-group">
+                        <label>Location *</label>
+                        <input type="text" id="location" required placeholder="e.g. Hyderabad">
+                    </div>
+                    <div class="form-group">
+                        <label>Drive Date *</label>
+                        <input type="date" id="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Timings *</label>
+                        <input type="text" id="time" required placeholder="e.g. 9:00 AM - 1:00 PM">
+                    </div>
+                    <div class="form-group">
+                        <label>Eligibility *</label>
+                        <input type="text" id="eligibility" required placeholder="e.g. B.Tech / BCA (2023-2025)">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Required Skills *</label>
+                    <input type="text" id="skills" required placeholder="e.g. Python, SQL, Communication">
+                </div>
+
+                <div class="form-group">
+                    <label>Full Venue Address *</label>
+                    <textarea id="venue" rows="2" required placeholder="Building, Street, Landmark, City"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Contact Info / Link (Optional)</label>
+                    <input type="text" id="contactInfo" placeholder="e.g. hr@company.com or registration URL">
+                </div>
+
+                <button type="submit" class="btn-primary full-width">Publish Walk-In Drive</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+    <!-- Custom Confirmation / Alert Modal -->
+<div class="modal" id="customAlertModal">
+    <div class="modal-content custom-alert-content">
+        <div class="modal-header">
+            <h3 id="alertModalTitle"><i class="fa-solid fa-circle-info"></i> Notice</h3>
+            <span class="close-btn" id="closeAlertBtn">&times;</span>
+        </div>
+        <p id="alertModalMessage" class="alert-message"></p>
+        <div class="modal-actions" id="alertModalActions">
+            <button class="btn-secondary" id="alertCancelBtn">Cancel</button>
+            <button class="btn-primary" id="alertConfirmBtn">OK</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>
